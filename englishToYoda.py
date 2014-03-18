@@ -1,5 +1,9 @@
 def englishToYoda(Englishphrase):
 
+    import random
+
+    final = ""
+
     contract = {"don't" : "do not", "can't" : "can not", "won't" : "will not", "aren't" : "are not", "couldn't" : "could not", "doesn't" : "does not"}
 
     #phraseLen = (len(Englishphrase)) - 1
@@ -23,15 +27,36 @@ def englishToYoda(Englishphrase):
     newString.append(second)
     #/Stuff
 
-    #!!!!!!Still needs to be fixed! Can't look up in the dictionary for some reason.!!!!!!
-    for i in range(0,((len(newString))-1)):
+    #Break ups the contractions and builds new string.
+    for i in range(0,(len(newString))):
         if newString[i] in contract:
             phrase = newString[i]
-            newString[i] = contract[phrase]
+            final = final + contract[phrase] + " "
+        else:
+            final = final + newString[i] + " "
 
-    #Taking out nto and adding it to the end.
+    #Split the new string up again.
+    newString = final.split()
+
+    #Taking out not and adding it to the end.
     if 'not' in newString:
         newString.remove('not')
         newString.append('not')
 
-    print(newString)
+    endings = ["... hmmm...", "... yes...", "... herh, herh, herh..."]
+
+    final = ""
+
+    for i in range(0, (len(newString) - 1)):
+        final = final + newString[i] + " "
+
+    final = final + newString[(len(newString))-1]
+
+    if (end == '?'):
+        final = final + "? Hmmmm...?"
+    else:
+        rand = (int)(random.uniform(0,2))
+        final = final + endings[rand]
+
+    #Print when you are done.
+    print(final)
