@@ -52,6 +52,13 @@ def englishToYoda(Englishphrase):
 
     final = final + newString[(len(newString))-1]
 
+    #Make the first word uppercase.
+    begin = final[:1]
+    begin = begin.upper()
+
+    final = begin + final[1:]
+
+    #Choose an ending based on statement or question.
     if (end == '?'):
         final = final + "? Hmmmm...?"
     else:
