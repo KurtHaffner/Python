@@ -1,12 +1,16 @@
 def englishToYoda(Englishphrase):
 
+    #Import random for random numbers.
     import random
 
+    #Set final to a blank string.
     final = ""
 
-    contract = {"don't" : "do not", "can't" : "can not", "won't" : "will not", "aren't" : "are not", "couldn't" : "could not", "doesn't" : "does not"}
+    #Dictionary for contractions.
+    contract = {"don't" : "do not", "can't" : "can not", "won't" : "will not", "aren't" : "are not", "couldn't" : "could not", "doesn't" : "does not", "isn't" : "is not", "wasn't" : "was not", "haven't" : "have not", "shouldn't" : "should not", "didn't" : "did not", "hasn't" : "has not", "mustn't" : "must not", "wouldn't" : "would not"}
 
-    #phraseLen = (len(Englishphrase)) - 1
+    #Set end to the punctuation at the end. This will
+    #help with knowing if a question was asked.
     end = Englishphrase[-1:]
 
     #Makes the first word lower case. At the end, make the first letter of first word upper case.
@@ -14,8 +18,13 @@ def englishToYoda(Englishphrase):
     if (Englishphrase[:1] != 'I'):
         
         newPhrase = newPhrase.lower()
-        
+
+    #Split the newString into a list of words.    
     newString = newPhrase.split()
+
+    #Put a comma on the end, so that it seperates the added words on the end.
+    length = len(newString)
+    newString[(length-1)] = newString[(length-1)] + ","
 
     #Stuff to put first two words on the end.
     first = newString[0]
@@ -43,19 +52,26 @@ def englishToYoda(Englishphrase):
         newString.remove('not')
         newString.append('not')
 
-    endings = ["... hmmm...", "... yes...", "... herh, herh, herh..."]
+    #List of possible endings, already including the punctuation.
+    endings = ["... Hmmm...", "... Yes...", "... Herh, herh, herh..."]
 
+    #Set final to a blank string again.
     final = ""
 
+    #Build the string with spaces after each word
+    #leaving off the last word.
     for i in range(0, (len(newString) - 1)):
         final = final + newString[i] + " "
 
+    #Add the last word onto the end, with no space after.
     final = final + newString[(len(newString))-1]
 
     #Make the first word uppercase.
     begin = final[:1]
     begin = begin.upper()
 
+    #Add the lower case letter and the string after the first letter
+    #back into final.
     final = begin + final[1:]
 
     #Choose an ending based on statement or question.
